@@ -1,11 +1,12 @@
 import { Sidebar, SidebarItem, SidebarItemGroup, SidebarItems } from "flowbite-react";
-import { HomeIcon, PencilIcon, TagIcon } from "@heroicons/react/24/solid";
+import { HomeIcon, PencilIcon, TagIcon, UserIcon } from "@heroicons/react/24/solid";
 import { ROUTES } from "../../const";
 
 export default function SidebarComponent() {
   return (
-    <Sidebar aria-label="Default sidebar example">
+    <Sidebar aria-label="Default sidebar">
       <SidebarItems>
+        <div className="text-white font-bold px-2">音楽アプリ</div>
         <SidebarItemGroup>
           <SidebarItem href={ROUTES.HOME} icon={HomeIcon}>
             ホーム
@@ -15,6 +16,9 @@ export default function SidebarComponent() {
           </SidebarItem>
           <SidebarItem href={ROUTES.TAG} icon={TagIcon}>
             検索
+          </SidebarItem>
+          <SidebarItem href={ROUTES.PROFILE} icon={UserIcon}>
+            プロフィール
           </SidebarItem>
         </SidebarItemGroup>
       </SidebarItems>

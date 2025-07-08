@@ -3,4 +3,5 @@ export const ROUTES = {
   POSTREVIEW: "/post",
   DETAIL: "/detail",
   TAG: "/tag",
+  PROFILE: "/profile",
 };

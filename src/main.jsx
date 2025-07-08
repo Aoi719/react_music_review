@@ -8,6 +8,7 @@ import TagSearch from "./pages/TagSearch";
 import "./index.css";
 import { ROUTES } from "./const";
 import { StrictMode } from "react";
+import Profile from "./pages/Profile";
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path={ROUTES.POSTREVIEW} element={<PostReview />} />
           <Route path={`${ROUTES.DETAIL}:id`} element={<Detail />} />
           <Route path={`${ROUTES.TagSearch}:tagName`} element={<TagSearch />} />
+          <Route path={`${ROUTES.PROFILE}`} element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>

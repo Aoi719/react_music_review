@@ -1,12 +1,10 @@
-import Form from "../components/Form/Form"
 import PrimaryHeading from "../components/Heading/PrimaryHeading"
 import PageWrapper from "../components/PageWrapper/PageWrapper"
 
-export default function PostReview() {
+export default function Profile() {
   return (
     <PageWrapper>
-      <PrimaryHeading>投稿する</PrimaryHeading>
-      <Form />
+      <PrimaryHeading>Profile</PrimaryHeading>
     </PageWrapper>
   )
 }
