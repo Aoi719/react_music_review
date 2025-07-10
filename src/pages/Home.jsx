@@ -23,7 +23,7 @@ export default function Home() {
           (<p>投稿がありません。</p>) :
           (reviews.map((post, index) => {
             return (
-              <ReviewCard key={`card-${post.id}`} id={post.id} title={post.title} artist={post.artist} image={post.image} onDelete={() => handleDelete(index)} onEdit={() => handleEdit(post)}>
+              <ReviewCard key={`card-${post.id}`} id={post.id} title={post.title} artist={post.artist} image={post.image} tags={post.tags} onDelete={() => handleDelete(index)} onEdit={() => handleEdit(post)}>
                 {post.review}
               </ReviewCard>
             )

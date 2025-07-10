@@ -12,6 +12,8 @@ export default function Form() {
   const [artist, setArtist] = useState("");
   const [image, setImage] = useState("");
   const [review, setReview] = useState("");
+  const [tags, setTags] = useState([]);
+  const [tagInput, setTagInput] = useState("");
 
   // 編集ボタン押下時、初期値を流し込む
   useEffect(() => {
@@ -20,15 +22,34 @@ export default function Form() {
       setArtist(editingReview.artist || "");
       setImage(editingReview.image || "");
       setReview(editingReview.review || "");
+      setTags(Array.isArray(editingReview.tags) ? editingReview.tags : []);
+      setTagInput("");
     }
   }, [editingReview]);
+
+  // タグ入力
+  const handleTagKeyDown = (e) => {
+    if (e.isComposing) return;
+    if (e.key === "Tab" || e.key === ",") {
+      e.preventDefault();
+      const newTag = tagInput.trim();
+      if (newTag !== "" && !tags.includes(newTag)) {
+        setTags([...tags, newTag]);
+      }
+      setTagInput("");
+    }
+  };
+  // タグの削除
+  const handleRemoveTag = (tagToRemove) => {
+    setTags(tags.filter(tag => tag !== tagToRemove));
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editingReview) {
       // 編集時
       setReviews((prev) => prev.map((r) =>
-        r.id === editingReview.id ? { ...r, title, artist, image, review } : r
+        r.id === editingReview.id ? { ...r, title, artist, image, review, tags } : r
       ));
       setEditingReview(null);
     } else {
@@ -37,7 +58,8 @@ export default function Form() {
         title,
         artist,
         image,
-        review
+        review,
+        tags
       };
       addReview(newReview);
     }
@@ -56,6 +78,28 @@ export default function Form() {
       <div>
         <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900">画像URL（任意）</label>
         <input type="text" id="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value={image} onChange={(e) => setImage(e.target.value)} />
+      </div>
+      <div>
+        <label htmlFor="tags" className="block mb-2 text-sm font-medium text-gray-900">タグ</label>
+        <input
+          type="text"
+          id="tags"
+          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+          value={tagInput}
+          onChange={(e) => setTagInput(e.target.value)}
+          onKeyDown={handleTagKeyDown}
+          placeholder="Tabキーまたはカンマ(,)で追加"
+        />
+        <div className="flex flex-wrap gap-2 mt-2">
+          {tags.map((tag, index) => (
+            <span
+              key={index}
+              className="border border-gray-700 text-gray-700 px-3 py-1 rounded-full text-sm"
+            >
+              {tag} <button type="button" onClick={() => handleRemoveTag(tag)}>×</button>
+            </span>
+          ))}
+        </div>
       </div>
       <div>
         <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900">レビュー本文</label>

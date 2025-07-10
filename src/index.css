@@ -5,16 +5,24 @@
 
 body {
   @apply font-sans;
+  overflow-x: hidden;
 }
 
-[data-testid="flowbite-card"] > img {
-  width: 250px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 0.5em 0 0 0.5em;
+[data-testid="flowbite-card"] {
+  > img {
+    background-color: white;
+    width: 250px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 0.5em 0 0 0.5em;
+  }
 }
 
-input[type="file"] {
+button {
+  cursor: pointer;
+}
+
+/* input[type="file"] {
   background: #fbf9fa;
   color: #000;
   border-color: #d1d5dc;
@@ -22,7 +30,7 @@ input[type="file"] {
     color: #000;
     background-color: #d1d5dc;
   }
-}
+} */
 
 .editButton {
   border-top-right-radius: 0;

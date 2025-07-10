@@ -1,6 +1,8 @@
 import { useOutletContext, useParams } from "react-router-dom"
 import PageWrapper from "../components/PageWrapper/PageWrapper";
 import PrimaryHeading from "../components/Heading/PrimaryHeading";
+import { Button } from "flowbite-react";
+
 
 export default function Detail() {
   const { id } = useParams();
@@ -12,17 +14,27 @@ export default function Detail() {
 
   return (
     <PageWrapper>
-      {review.image === true ?
-        (<img src={review.image} alt={review.title} />) : ("")
+      {review.image ?
+        (<div className="max-w-xl mb-5"><img src={review.image} alt={review.title} /></div>) : ("")
       }
-      <PrimaryHeading>
+      <PrimaryHeading mb="mb-3">
         {review.title}
       </PrimaryHeading>
-      <p>{review.artist}</p>
-      <p>{review.review}</p>
-      <button onClick={() => history.back()}>
+      <p className="mb-5">{review.artist}</p>
+      <div className="tags mb-5">
+        <ul className="tags-list">
+          {Array.isArray(review.tags) && review.tags.length > 0 ?
+            review.tags.map((tag, index) => {
+              return <li className="inline-block mr-2 border border-gary-500 text-gary-500 px-3 py-1 rounded-full text-sm" key={`tag-${index}`}>{tag}</li>
+            }) : null
+          }
+        </ul>
+      </div>
+      <p className="mb-5">{review.review}</p>
+
+      <Button type="button" color="blue" onClick={() => history.back()}>
         戻る
-      </button>
+      </Button>
     </PageWrapper>
   )
 }
