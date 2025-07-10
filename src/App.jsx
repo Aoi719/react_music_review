@@ -27,7 +27,7 @@ function App() {
       <div className="flex-1 overflow-y-auto">
         <Outlet context={{ reviews, addReview, setReviews, editingReview, setEditingReview }} />
       </div>
-      <div className="w-30 md:w-64 border-l border-gray-200 bg-gray-50">
+      <div className="w-30 md:w-64 border-l border-gray-200 bg-gray-50 md:static md:ml-auto">
         <Sidebar />
       </div>
     </div>

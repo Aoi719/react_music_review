@@ -1,7 +1,8 @@
-import { useOutletContext, useParams } from "react-router-dom"
+import { Link, useOutletContext, useParams } from "react-router-dom"
 import PageWrapper from "../components/PageWrapper/PageWrapper";
 import PrimaryHeading from "../components/Heading/PrimaryHeading";
 import { Button, Rating, RatingStar } from "flowbite-react";
+import { ROUTES } from "../const";
 
 
 export default function Detail() {
@@ -25,7 +26,9 @@ export default function Detail() {
         <ul className="tags-list">
           {Array.isArray(review.tags) && review.tags.length > 0 ?
             review.tags.map((tag, index) => {
-              return <li className="inline-block mr-2 border border-gary-500 text-gary-500 px-3 py-1 rounded-full text-sm" key={`tag-${index}`}>{tag}</li>
+              return (<li className="inline-block mr-2 text-sm" key={`tag-${index}`}>
+                <Link className="border border-gray-500 text-gray-900 bg-white rounded-full px-3 py-1 block hover:bg-gray-800 hover:text-white" to={`${ROUTES.TAG}${encodeURIComponent(tag)}`}>{tag}</Link>
+              </li>)
             }) : null
           }
         </ul>

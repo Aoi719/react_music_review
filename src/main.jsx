@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.POSTREVIEW} element={<PostReview />} />
           <Route path={`${ROUTES.DETAIL}:id`} element={<Detail />} />
-          <Route path={ROUTES.TAG} element={<TagSearch />} />
+          <Route path={`${ROUTES.TAG}:tagName`} element={<TagSearch />} />
           <Route path={`${ROUTES.PROFILE}`} element={<Profile />} />
         </Route>
       </Routes>
