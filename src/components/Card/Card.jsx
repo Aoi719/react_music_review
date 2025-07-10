@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function ReviewCard({ title, artist, image, children, onDelete, onEdit, id, tags, rating = 0 }) {
   return (
-    <Card className="md:w-full md:max-w-none font-sans" horizontal imgSrc={image} imgAlt={title}>
+    <Card className="md:w-full md:max-w-none font-sans" horizontal  {...(image ? { imgSrc: image } : {})} imgAlt={title}>
       <Link to={`${ROUTES.DETAIL}${id}`}>
         <h5 className="text-3xl font-bold text-white">
           {title}

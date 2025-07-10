@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Button, Rating, RatingStar } from "flowbite-react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { ROUTES } from "../../const";
@@ -15,6 +15,8 @@ export default function Form() {
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
   const [rating, setRating] = useState(0);
+  const [imageFile, setImageFile] = useState(null);;
+  const [imagePreview, setImagePreview] = useState("");
 
   // 編集ボタン押下時、初期値を流し込む
   useEffect(() => {
@@ -26,6 +28,7 @@ export default function Form() {
       setTags(Array.isArray(editingReview.tags) ? editingReview.tags : []);
       setTagInput("");
       setRating(editingReview.review || 0);
+      setImagePreview(editingReview.image || "");
     }
   }, [editingReview]);
 
@@ -46,12 +49,26 @@ export default function Form() {
     setTags(tags.filter(tag => tag !== tagToRemove));
   };
 
+  // 画像ファイル
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editingReview) {
       // 編集時
       setReviews((prev) => prev.map((r) =>
-        r.id === editingReview.id ? { ...r, title, artist, image, review, tags, rating } : r
+        r.id === editingReview.id ? { ...r, title, artist, image: imagePreview || r.image, review, tags, rating } : r
       ));
       setEditingReview(null);
     } else {
@@ -59,7 +76,7 @@ export default function Form() {
         id: nanoid(),
         title,
         artist,
-        image,
+        image: imagePreview,
         review,
         tags,
         rating
@@ -78,9 +95,24 @@ export default function Form() {
         <label htmlFor="artist" className="block mb-2 text-sm font-medium text-gray-900">アーティスト名</label>
         <input type="text" id="artist" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value={artist} onChange={(e) => setArtist(e.target.value)} required />
       </div>
-      <div>
+      {/* <div>
         <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900">画像URL（任意）</label>
         <input type="text" id="image" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" value={image} onChange={(e) => setImage(e.target.value)} />
+      </div> */}
+      <div>
+        <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900">画像をアップロード</label>
+        <input
+          type="file"
+          id="image"
+          accept="image/*"
+          onChange={handleImageChange}
+          className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+        />
+        {imagePreview && (
+          <div className="mt-2">
+            <img src={imagePreview} alt="プレビュー" className="max-w-xs rounded" />
+          </div>
+        )}
       </div>
       <div>
         <label htmlFor="tags" className="block mb-2 text-sm font-medium text-gray-900">タグ</label>
