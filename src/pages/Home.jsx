@@ -18,6 +18,7 @@ export default function Home() {
 
   return (
     <PageWrapper>
+      <h1 className="sr-only">トップページ</h1>
       <div className="flex flex-col gap-4" >
         {reviews.length === 0 ?
           (<p>投稿がありません。</p>) :

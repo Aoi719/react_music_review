@@ -5,7 +5,7 @@ import PageWrapper from "../components/PageWrapper/PageWrapper"
 export default function PostReview() {
   return (
     <PageWrapper>
-      <PrimaryHeading>投稿する</PrimaryHeading>
+      <PrimaryHeading>音楽レビューを投稿する</PrimaryHeading>
       <Form />
     </PageWrapper>
   )

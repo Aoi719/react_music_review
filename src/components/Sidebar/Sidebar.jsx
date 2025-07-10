@@ -7,8 +7,8 @@ export default function SidebarComponent() {
     <Sidebar aria-label="Default sidebar">
       <SidebarItems>
         <div className="flex items-center text-white font-bold px-2">
-          <div className="mr-3 w-12"><img src="/img/logo.svg" alt="" /></div>
-          <div className="shrink-0">Favorite Music App</div>
+          <div className="mr-3 w-12"><img src="/img/logo.svg" alt="Favorite Music App Logo" /></div>
+          <div className="shrink-0"><h1>Favorite Music App</h1></div>
         </div>
         <SidebarItemGroup>
           <SidebarItem href={ROUTES.HOME} icon={HomeIcon}>
