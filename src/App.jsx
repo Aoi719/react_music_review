@@ -13,7 +13,7 @@ function App() {
   // レビューの変更をlocalStorageへ保存
   useEffect(() => {
     localStorage.setItem("reviews", JSON.stringify(reviews));
-  }), [reviews];
+  }, [reviews]);
 
   const addReview = (newReview) => {
     setReviews(prev => [newReview, ...prev]);

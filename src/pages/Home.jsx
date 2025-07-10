@@ -1,15 +1,19 @@
 import ReviewCard from "../components/Card/Card";
 import PageWrapper from "../components/PageWrapper/PageWrapper";
-import { useOutletContext } from "react-router-dom";
+import { Link, useNavigate, useOutletContext } from "react-router-dom";
+import { ROUTES } from "../const";
 
 export default function Home() {
-  const { reviews, setReviews } = useOutletContext();
+  const { reviews, setReviews, setEditingReview } = useOutletContext();
+  const navigate = useNavigate();
 
   const handleDelete = (indexToDelete) => {
     const updated = reviews.filter((_, i) => i !== indexToDelete);
     setReviews(updated)
   }
-  const setEditingReview = (indexToDelete) => {
+  const handleEdit = (review) => {
+    setEditingReview(review);
+    navigate(ROUTES.POSTREVIEW);
   }
 
   return (
@@ -19,7 +23,7 @@ export default function Home() {
           (<p>投稿がありません。</p>) :
           (reviews.map((post, index) => {
             return (
-              <ReviewCard key={`card-${index}`} title={post.title} artist={post.artist} image={post.image} onDelete={() => handleDelete(index)} onEdit={() => setEditingReview(post)}>
+              <ReviewCard key={`card-${post.id}`} id={post.id} title={post.title} artist={post.artist} image={post.image} onDelete={() => handleDelete(index)} onEdit={() => handleEdit(post)}>
                 {post.review}
               </ReviewCard>
             )
@@ -29,4 +33,3 @@ export default function Home() {
     </PageWrapper>
   )
 }
-

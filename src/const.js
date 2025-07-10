@@ -1,7 +1,7 @@
 export const ROUTES = {
   HOME: "/",
   POSTREVIEW: "/post",
-  DETAIL: "/detail",
+  DETAIL: "/detail/",
   TAG: "/tag",
   PROFILE: "/profile",
 };

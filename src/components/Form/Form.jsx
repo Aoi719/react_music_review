@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Button } from "flowbite-react";
+import { useEffect, useState } from "react";
+import { Button, FileInput } from "flowbite-react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { ROUTES } from "../../const";
 import { nanoid } from "nanoid";
@@ -12,6 +12,16 @@ export default function Form() {
   const [artist, setArtist] = useState("");
   const [image, setImage] = useState("");
   const [review, setReview] = useState("");
+
+  // 編集ボタン押下時、初期値を流し込む
+  useEffect(() => {
+    if (editingReview) {
+      setTitle(editingReview.title || "");
+      setArtist(editingReview.artist || "");
+      setImage(editingReview.image || "");
+      setReview(editingReview.review || "");
+    }
+  }, [editingReview]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
