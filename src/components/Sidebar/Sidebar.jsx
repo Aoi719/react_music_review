@@ -6,7 +6,10 @@ export default function SidebarComponent() {
   return (
     <Sidebar aria-label="Default sidebar">
       <SidebarItems>
-        <div className="text-white font-bold px-2">音楽アプリ</div>
+        <div className="flex items-center text-white font-bold px-2">
+          <div className="mr-3 w-12"><img src="/img/logo.svg" alt="" /></div>
+          <div className="shrink-0">Favorite Music App</div>
+        </div>
         <SidebarItemGroup>
           <SidebarItem href={ROUTES.HOME} icon={HomeIcon}>
             ホーム
@@ -14,12 +17,12 @@ export default function SidebarComponent() {
           <SidebarItem href={ROUTES.POSTREVIEW} icon={PencilIcon}>
             投稿
           </SidebarItem>
-          <SidebarItem href={ROUTES.TAG} icon={TagIcon}>
+          {/* <SidebarItem href={ROUTES.TAG} icon={TagIcon}>
             検索
-          </SidebarItem>
-          <SidebarItem href={ROUTES.PROFILE} icon={UserIcon}>
+          </SidebarItem> */}
+          {/* <SidebarItem href={ROUTES.PROFILE} icon={UserIcon}>
             プロフィール
-          </SidebarItem>
+          </SidebarItem> */}
         </SidebarItemGroup>
       </SidebarItems>
     </Sidebar>
