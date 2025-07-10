@@ -1,24 +1,22 @@
 export const postData = [
   {
-    id: "1",
-    type: "track",
-    title: "青と夏",
-    artist: "Mrs. GREEN APPLE",
-    tags: ["ポップ", "青春"],
-    rating: 5,
-    review: "夏の空気感とメロディが最高。元気になれる一曲。",
-    image: "https://placehold.co/300x300", // 仮画像
-    createdAt: "2025-07-01T10:00:00Z",
+    id: "dummy-1",
+    title: "Starfall Memories",
+    artist: "Nova Echo",
+    image: "/img/img01.jpg",
+    review:
+      "星が降る夜に聴きたくなる一曲。静かな導入から徐々に盛り上がる展開が最高。特にサビ前のギターがたまらない！",
+    tags: ["チル", "インスト", "夜"],
+    rating: 4,
   },
   {
-    id: "2",
-    type: "album",
-    title: "First Love",
-    artist: "宇多田ヒカル",
-    tags: ["バラード", "和風"],
-    rating: 4,
-    review: "切なさと透明感が際立つ名盤。",
-    image: "https://placehold.co/300x300",
-    createdAt: "2025-06-25T15:30:00Z",
+    id: "dummy-2",
+    title: "Morning Bloom",
+    artist: "Aether Garden",
+    image: "/img/img02.jpg",
+    review:
+      "朝にぴったりな爽やかな一曲。ピアノとストリングスのバランスが美しく、通勤中に癒されます。",
+    tags: ["ポップ", "爽やか", "朝"],
+    rating: 5,
   },
 ];
