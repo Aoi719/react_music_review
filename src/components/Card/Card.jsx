@@ -1,8 +1,8 @@
-import { Card, Button } from "flowbite-react";
+import { Card, Button, Rating, RatingStar } from "flowbite-react";
 import { ROUTES } from "../../const";
 import { Link } from "react-router-dom";
 
-export default function ReviewCard({ title, artist, image, children, onDelete, onEdit, id, tags }) {
+export default function ReviewCard({ title, artist, image, children, onDelete, onEdit, id, tags, rating = 0 }) {
   return (
     <Card className="md:w-full md:max-w-none font-sans" horizontal imgSrc={image} imgAlt={title}>
       <Link to={`${ROUTES.DETAIL}${id}`}>
@@ -20,6 +20,13 @@ export default function ReviewCard({ title, artist, image, children, onDelete, o
               }) : null
             }
           </ul>
+        </div>
+        <div className="mt-5">
+          <Rating>
+            {[1, 2, 3, 4, 5].map((i) => {
+              return <RatingStar key={`rating-${i}`} filled={i <= rating} />
+            })}
+          </Rating>
         </div>
         <div className="mt-7 text-white whitespace-pre-line">{children}</div>
       </Link>

@@ -1,7 +1,7 @@
 import { useOutletContext, useParams } from "react-router-dom"
 import PageWrapper from "../components/PageWrapper/PageWrapper";
 import PrimaryHeading from "../components/Heading/PrimaryHeading";
-import { Button } from "flowbite-react";
+import { Button, Rating, RatingStar } from "flowbite-react";
 
 
 export default function Detail() {
@@ -30,7 +30,14 @@ export default function Detail() {
           }
         </ul>
       </div>
-      <p className="mb-5">{review.review}</p>
+      <div className="mt-5">
+        <Rating>
+          {[1, 2, 3, 4, 5].map((i) => {
+            return <RatingStar key={`rating-${i}`} filled={i <= review.rating} />
+          })}
+        </Rating>
+      </div>
+      <p className="mt-5 mb-5">{review.review}</p>
 
       <Button type="button" color="blue" onClick={() => history.back()}>
         戻る

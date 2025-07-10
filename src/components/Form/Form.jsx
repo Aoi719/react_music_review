@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, FileInput } from "flowbite-react";
+import { Button, Rating, RatingStar } from "flowbite-react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import { ROUTES } from "../../const";
 import { nanoid } from "nanoid";
@@ -14,6 +14,7 @@ export default function Form() {
   const [review, setReview] = useState("");
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
+  const [rating, setRating] = useState(0);
 
   // 編集ボタン押下時、初期値を流し込む
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Form() {
       setReview(editingReview.review || "");
       setTags(Array.isArray(editingReview.tags) ? editingReview.tags : []);
       setTagInput("");
+      setRating(editingReview.review || 0);
     }
   }, [editingReview]);
 
@@ -49,7 +51,7 @@ export default function Form() {
     if (editingReview) {
       // 編集時
       setReviews((prev) => prev.map((r) =>
-        r.id === editingReview.id ? { ...r, title, artist, image, review, tags } : r
+        r.id === editingReview.id ? { ...r, title, artist, image, review, tags, rating } : r
       ));
       setEditingReview(null);
     } else {
@@ -59,7 +61,8 @@ export default function Form() {
         artist,
         image,
         review,
-        tags
+        tags,
+        rating
       };
       addReview(newReview);
     }
@@ -100,6 +103,14 @@ export default function Form() {
             </span>
           ))}
         </div>
+      </div>
+      <div>
+        <label htmlFor="rating" className="block mb-2 text-sm font-medium text-gray-900">評価</label>
+        <Rating id="rating">
+          {[1, 2, 3, 4, 5].map((i) => {
+            return <RatingStar key={`ragting-${i}`} filled={i <= rating} onClick={() => setRating(i)} className="cursor-pointer" />
+          })}
+        </Rating>
       </div>
       <div>
         <label htmlFor="image" className="block mb-2 text-sm font-medium text-gray-900">レビュー本文</label>
